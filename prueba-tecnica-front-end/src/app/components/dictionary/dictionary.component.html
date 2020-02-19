@@ -1,0 +1,32 @@
+<div id="Dictionary"> 
+	<h4> Datos obtenidos del diccionario</h4>
+</div>
+
+<button (click)="getDict()" type="button" class="btn btn-rounded btn-primary"> Generar tabla de datos de parrafos</button>
+
+
+<div *ngIf="success; else notSuccess">
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col"> N° </th>
+				<th scope="col" *ngFor="let char of alphabet"> {{ char }} </th>
+				<th scope="col"> Suma númericos contenidos </th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let paragraph of charQuantityByParagraph, let paragraphIndex = index">
+				<td> {{ paragraphIndex + 1}} </td>
+				<td *ngFor= "let char of alphabet, let charIndex = index"> {{ paragraph[charIndex] }}</td>
+				<td> {{ paragraphArray[paragraphIndex].sumNumbers() }} </td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<ng-template #notSuccess> 
+	<div>
+
+	</div>
+</ng-template>
+<ngx-spinner></ngx-spinner>

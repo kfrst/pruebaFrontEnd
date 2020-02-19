@@ -1,0 +1,40 @@
+<div id="Array"> 
+	<h4> Datos obtenidos de la api Array</h4>
+</div>
+ <button (click)="getArray()" type="button" class="btn btn-rounded btn-primary"> Generar tabla de datos </button>
+
+<div *ngIf="success; else notSuccess">
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col"> N° </th>
+				<th scope="col"> Number </th>
+				<th scope="col"> Quantity </th>
+				<th scope="col"> First position </th>
+				<th scope="col"> Last position </th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr [ngClass]="{'withMoreThanOne': number.quantity >= 2, 'withOne': number.quantity == 1, 'withNoOne': number.quantity == 0 }" *ngFor="let number of numbers, let numberIndex = index">
+				<td> {{ numberIndex + 1 }}</td>
+				<td> {{ number.number }} </td>
+				<td> {{ number.quantity }} </td>
+				<td> {{ number.firstPosition }} </td>
+				<td> {{ number.lastPosition }} </td>
+			</tr>
+		</tbody>
+		</table>
+
+		<div class="form-group row">
+				<div class="col-md-6">
+					<input type="text" readonly class="form-control mb-4" value="{{ sortedData }}">
+				</div>
+		</div>
+</div>
+
+<ng-template #notSuccess> 
+	<div>
+
+	</div>
+</ng-template>
+<ngx-spinner></ngx-spinner>

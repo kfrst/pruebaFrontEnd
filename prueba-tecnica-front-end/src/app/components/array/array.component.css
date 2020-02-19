@@ -1,0 +1,11 @@
+.withMoreThanOne{
+	background: green;
+}
+
+.withOne{
+	background: yellow;
+}
+
+.withNoOne{
+	background: gray;
+}
