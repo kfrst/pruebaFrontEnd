@@ -1,11 +1,34 @@
 .withMoreThanOne{
-	background: green;
+	background-image: linear-gradient(to top right, rgb( 60, 184, 49 ), green);
 }
 
 .withOne{
-	background: yellow;
+	background-image: linear-gradient(to top right, rgb( 228, 236, 127 ), yellow);
 }
 
 .withNoOne{
 	background: gray;
+}
+
+.table td, th{
+	width: 3%;
+	text-align: center !important;
+}
+
+.table th{
+	background-image: linear-gradient(to top right, rgb( 13, 194, 238 ), rgb( 13, 231, 238 ));
+	color: white;
+}
+
+.num-table{
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.btn-rounded{
+	border-radius: 12px;
+}
+
+.alert{
+	padding-top: 20px;
 }

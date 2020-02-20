@@ -8,14 +8,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DictionaryComponent } from './components/dictionary/dictionary.component';
 import { ArrayComponent } from './components/array/array.component';
-import { LoadingEventComponent } from './components/loading-event/loading-event.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DictionaryComponent,
     ArrayComponent,
-    LoadingEventComponent
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
