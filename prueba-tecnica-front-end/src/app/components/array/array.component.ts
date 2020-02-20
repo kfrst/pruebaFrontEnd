@@ -24,17 +24,19 @@ export class ArrayComponent implements OnInit {
   
   ngOnInit() {
   	console.log('Componente ejecutado');
-  	//this.getArray();
   }
+  /* Metodo en donde se consume la API a través del servicio pruebaService.
+     Se guardan los datos inicialmente recibidos en los atributos principales de la clase
+     (dataArray, error, success). En caso de que success sea True, se procede a procesar la data según
+     los requerimientos para el proyecto */
 
   getArray(){
-  	this._spinner.show();
+  	this._spinner.show(); /* Se muestra el evento de loading hasta que se reciben los datos*/
   	this.numbers = [];
   	this._pruebaService.getArray().subscribe(
   			response =>{
   				this._spinner.hide();
   				let data = response;
-  				console.log(data);
   				this.dataArray = data.data;
   				this.error = data.error;
   				this.success = data.success;
@@ -44,19 +46,27 @@ export class ArrayComponent implements OnInit {
   				}
   			},
   			error =>{
+          this.error = <any> error;
   				console.log(<any>error);
   			}
 		);
   }
+
+  /* processData se encarga de crear un Array de objetos correspondientes al modelo Number, para esto
+     se verifica si ya existe el número a procesar en el Array. Si existe, se incrementa la cantidad 
+     de ocurrencias, en caso contrario, se crea un nuevo Number y se añade al Array */
 
   processData(): void{
   	for(let numberIndex = 0; numberIndex < this.dataArray.length; numberIndex++){
   		let numberObject = this.hasThisNumber(this.dataArray[numberIndex]);
   		let lastIndex = this.dataArray.lastIndexOf(this.dataArray[numberIndex]);;
   		if(numberObject){
-  			this.updateNumber(this.numbers.indexOf(numberObject));
+  			this.updateNumber(this.numbers.indexOf(numberObject)); 
   		}
   		else{
+        /* Se invoca al metodo para crear un nuevo numero y agregarlo al array, para esto se envían
+          los datos necesarios para una nueva instancia de Number (el número, el indice de su primera aparicion
+          y su última aparición obtenida gracias al metodo lastIndexOf */
   			this.createNumber(this.dataArray[numberIndex], numberIndex, lastIndex);
   		}
   	}
@@ -82,6 +92,10 @@ export class ArrayComponent implements OnInit {
   	this.numbers[elementPosition] = newNumber;
   }
 
+
+  /* sortData aplica un bubble sort a un arreglo auxiliar que contiene únicamente los números para ordenarlos
+      de menor a mayor  */
+
   sortData( data : number[]){
   	let dataToSort: number[] = [...data];
   	let dataLength: number = dataToSort.length;
@@ -95,11 +109,14 @@ export class ArrayComponent implements OnInit {
   			}
   		}
   	}
-  	console.log("Sin ordenar: ", data);
+
+    /* Dejo ambos console.log en caso de que quieran comparar el resultado final con los datos pre-procesados */
+  	console.log("Sin ordenar: ", data);   
   	console.log("Ordenado: ", dataToSort);
   	this.concatDataNumber(dataToSort);
-  	console.log(this.sortedData);
   }
+
+  /* Se concatenan los números ordenados para luego ser mostrados en la vista */
 
   concatDataNumber( data: number[]){
   	let dataLength: number = data.length;
