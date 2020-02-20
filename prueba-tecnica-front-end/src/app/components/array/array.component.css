@@ -1,0 +1,48 @@
+.withMoreThanOne{
+	background-image: linear-gradient(to top right, rgb( 60, 184, 49 ), green);
+}
+
+.withOne{
+	background-image: linear-gradient(to top right, rgb( 228, 236, 127 ), yellow);
+}
+
+.withNoOne{
+	background: gray;
+}
+
+.table td, th{
+	width: 3%;
+	text-align: center !important;
+}
+
+.table th{
+	background-image: linear-gradient(to top right, rgb( 13, 194, 238 ), rgb( 13, 231, 238 ));
+	color: white;
+}
+
+.num-table{
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.btn-rounded{
+	border-radius: 12px;
+}
+
+.alert{
+	margin-top: 20px;
+}
+
+.container .information label{
+	text-align: justify;
+	margin-top: 10px;
+	margin-bottom: 20px;
+	line-height: 18px;
+	font-weight: bold;
+
+}
+
+.spinner{
+	color: gray;
+	font-size: 15px;
+}

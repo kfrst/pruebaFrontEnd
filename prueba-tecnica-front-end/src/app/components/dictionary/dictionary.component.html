@@ -1,0 +1,41 @@
+<div class="container">
+
+	<div id="Dictionary"> 
+		<h4> Vista para consumir API de diccionario</h4>
+	</div>
+
+	<button (click)="getDict()" type="button" class="btn btn-rounded btn-primary"> Generar tabla de datos de parrafos</button>
+
+
+	<div *ngIf="success; else notSuccess">
+		<div class="table-responsive fixed-table-body dict-table">
+			<table class="table table-bordered table-hover table-sm">
+				<thead>
+					<tr>
+						<th scope="col"> N° </th>
+						<th scope="col" *ngFor="let char of alphabet"> {{ char }} </th>
+						<th scope="col"> Suma númericos contenidos </th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let paragraph of charQuantityByParagraph, let paragraphIndex = index">
+						<td> {{ paragraphIndex + 1}} </td>
+						<td *ngFor= "let char of alphabet, let charIndex = index"> {{ paragraph[charIndex] }}</td>
+						<td> {{ paragraphArray[paragraphIndex].sumNumbers() }} </td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<ng-template #notSuccess>
+		<div *ngIf="error != ''">
+			<div class="alert alert-danger" role="alert">
+	  			<p> {{ error }} </p>
+			</div>
+		</div>
+	</ng-template>
+	<ngx-spinner type="pacman" size="medium" color="yellow">
+		<p class="spinner"> Cargando... </p>
+	</ngx-spinner>
+</div>

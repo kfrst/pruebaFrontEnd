@@ -1,0 +1,55 @@
+<div class="container">
+
+	<div id="Array"> 
+		<h4> Vista para consumir API de Array</h4>
+	</div>
+	 <button (click)="getArray()" type="button" class="btn btn-rounded btn-primary"> Generar tabla de datos de números </button>
+
+	<div *ngIf="success; else notSuccess">
+		<div class="table-responsive fixed-table-body num-table">
+			<table class="table table-bordered table-sm">
+				<thead>
+					<tr>
+						<th scope="col"> N° </th>
+						<th scope="col"> Number </th>
+						<th scope="col"> Quantity </th>
+						<th scope="col"> First position </th>
+						<th scope="col"> Last position </th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr [ngClass]="{'withMoreThanOne': number.quantity >= 2, 'withOne': number.quantity == 1, 'withNoOne': number.quantity == 0 }" *ngFor="let number of numbers, let numberIndex = index">
+						<td> {{ numberIndex + 1 }}</td>
+						<td> {{ number.number }} </td>
+						<td> {{ number.quantity }} </td>
+						<td> {{ number.firstPosition }} </td>
+						<td> {{ number.lastPosition }} </td>
+					</tr>
+				</tbody>
+				</table>
+			</div>
+
+			<div class="container information">
+				<div class="form-group row">
+						<div class="col-md-4">
+							<label> Listado de números ordenados en forma ascendente: </label>
+						</div>
+						<div class="col-md-8">
+							<input type="text" readonly class="form-control mb-4" value="{{ sortedData }}">
+						</div>
+				</div>
+			</div>
+	</div>
+
+	<ng-template #notSuccess>
+		<div *ngIf="error != ''">
+			<div class="alert alert-danger" role="alert">
+		  		<p> {{ error }} </p>
+			</div>
+		</div>
+	</ng-template>
+	<ngx-spinner type="pacman" size="medium" color="yellow">
+		<p class="spinner"> Cargando... </p>
+	</ngx-spinner>
+
+</div>
