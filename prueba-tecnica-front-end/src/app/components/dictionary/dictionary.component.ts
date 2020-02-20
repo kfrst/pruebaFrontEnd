@@ -15,7 +15,7 @@ import { Paragraph } from '../../models/paragraph';
 export class DictionaryComponent implements OnInit {
 	public paragraphArray: Paragraph[] = [];
 	public success: boolean;
-	public error: string;
+	public error: string = '';
   
   /* Se crea un un arreglo con el alfabeto para luego utilizarlo en el contador de caracteres por párrafo */
 
@@ -44,20 +44,25 @@ export class DictionaryComponent implements OnInit {
   			response =>{
   				this._spinner.hide();
   				let data = response;
-  				this.success = data.success;
-  				this.error = data.error;
-          if(this.success){
-            /* Después de conseguir los párrafos, se realiza un mapeo al arreglo de objetos del modelo Paragraph */
-            data = JSON.parse(data.data);
-            this.paragraphArray = data.map((paragraph: Paragraph) => {
-              return new Paragraph(
-              paragraph.paragraph,
-              paragraph.number,
-              paragraph.hasCopyright
-              );
-            });
-            console.log(this.paragraphArray);
-            this.processData(this.paragraphArray);
+          if(data){
+            this.success = data.success;
+            this.error = data.error;
+            if(this.success){
+              /* Después de conseguir los párrafos, se realiza un mapeo al arreglo de objetos del modelo Paragraph */
+              data = JSON.parse(data.data);
+              this.paragraphArray = data.map((paragraph: Paragraph) => {
+                return new Paragraph(
+                paragraph.paragraph,
+                paragraph.number,
+                paragraph.hasCopyright
+                );
+              });
+              console.log(this.paragraphArray);
+              this.processData(this.paragraphArray);
+            }
+          }
+          else{
+            this.error += ' No llegaron datos para procesar desde la API';
           }
   			},
   			error =>{

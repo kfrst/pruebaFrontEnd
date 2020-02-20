@@ -30,5 +30,19 @@
 }
 
 .alert{
-	padding-top: 20px;
+	margin-top: 20px;
+}
+
+.container .information label{
+	text-align: justify;
+	margin-top: 10px;
+	margin-bottom: 20px;
+	line-height: 18px;
+	font-weight: bold;
+
+}
+
+.spinner{
+	color: gray;
+	font-size: 15px;
 }

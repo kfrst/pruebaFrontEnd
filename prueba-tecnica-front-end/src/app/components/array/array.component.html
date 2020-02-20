@@ -29,7 +29,7 @@
 				</table>
 			</div>
 
-			<div class="container">
+			<div class="container information">
 				<div class="form-group row">
 						<div class="col-md-4">
 							<label> Listado de números ordenados en forma ascendente: </label>
@@ -41,11 +41,15 @@
 			</div>
 	</div>
 
-	<ng-template #notSuccess> 
-		<div class="alert alert-danger" role="alert">
-  			<p> {{ error }} </p>
+	<ng-template #notSuccess>
+		<div *ngIf="error != ''">
+			<div class="alert alert-danger" role="alert">
+		  		<p> {{ error }} </p>
+			</div>
 		</div>
 	</ng-template>
-	<ngx-spinner></ngx-spinner>
+	<ngx-spinner type="pacman" size="medium" color="yellow">
+		<p class="spinner"> Cargando... </p>
+	</ngx-spinner>
 
 </div>

@@ -14,7 +14,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class ArrayComponent implements OnInit {
   public dataArray: number[]= [];
   public numbers: Number[] = [];
-  public error: string;
+  public error: string = '';
   public success: boolean;
   public sortedData: string;
   constructor( private _pruebaService: PruebaService,
@@ -37,13 +37,18 @@ export class ArrayComponent implements OnInit {
   			response =>{
   				this._spinner.hide();
   				let data = response;
-  				this.dataArray = data.data;
-  				this.error = data.error;
-  				this.success = data.success;
-  				if(this.success){
-  					this.processData();
-  					this.sortData(this.dataArray);
-  				}
+          if(data){
+              this.dataArray = data.data;
+              this.error = data.error;
+              this.success = data.success;
+              if(this.success){
+                this.processData();
+                this.sortData(this.dataArray);
+              }
+          }
+          else{
+            this.error += ' No llegaron datos para procesar desde la API';
+          }
   			},
   			error =>{
           this.error = <any> error;

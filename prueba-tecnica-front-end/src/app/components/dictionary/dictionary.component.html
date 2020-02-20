@@ -28,10 +28,14 @@
 		</div>
 	</div>
 
-	<ng-template #notSuccess> 
-		<div class="alert alert-danger" role="alert">
-  			<p> {{ error }} </p>
+	<ng-template #notSuccess>
+		<div *ngIf="error != ''">
+			<div class="alert alert-danger" role="alert">
+	  			<p> {{ error }} </p>
+			</div>
 		</div>
 	</ng-template>
-	<ngx-spinner></ngx-spinner>
+	<ngx-spinner type="pacman" size="medium" color="yellow">
+		<p class="spinner"> Cargando... </p>
+	</ngx-spinner>
 </div>
